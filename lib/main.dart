@@ -17,23 +17,19 @@ import 'features/team/presentation/providers/team_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize Firebase
   await Firebase.initializeApp();
-  
+
   // Initialize Hive
   await Hive.initFlutter();
-  
+
   // Initialize services
   await NotificationService.initialize();
   await SyncService.initialize();
   await AIService.initialize();
-  
-  runApp(
-    const ProviderScope(
-      child: TaskManagerApp(),
-    ),
-  );
+
+  runApp(const ProviderScope(child: TaskManagerApp()));
 }
 
 class TaskManagerApp extends ConsumerWidget {
@@ -43,7 +39,7 @@ class TaskManagerApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final themeMode = ref.watch(themeModeProvider);
-    
+
     return MaterialApp.router(
       title: AppConfig.appName,
       debugShowCheckedModeBanner: false,
